@@ -61,6 +61,11 @@ import Layout from '../layouts/Layout.astro';
   </main>
 
   <script>
+    // Load EmailJS from CDN
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    document.head.appendChild(script);
+
     // @ts-nocheck
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('reserve-form');
@@ -73,34 +78,71 @@ import Layout from '../layouts/Layout.astro';
       /** @type {{Familia:number,Gladiador:number,Imperial:number}} */
       const prices = { Familia: 35, Gladiador: 25, Imperial: 48 };
 
-      const ticketTypeEl = document.getElementById('ticketType');
-      const quantityEl = document.getElementById('quantity');
-      const totalAmountEl = document.getElementById('totalAmount');
+      const ticketType = /** @type {HTMLSelectElement} */ (document.getElementById('ticketType'));
+      const quantity = /** @type {HTMLInputElement} */ (document.getElementById('quantity'));
+      const totalAmount = /** @type {HTMLElement} */ (document.getElementById('totalAmount'));
 
-      if (!ticketTypeEl || !quantityEl || !totalAmountEl) return;
+      if (!ticketType || !quantity || !totalAmount) return;
 
-      /** @type {HTMLSelectElement} */
-      const ticketType = ticketTypeEl;
-      /** @type {HTMLInputElement} */
-      const quantity = quantityEl;
-      /** @type {HTMLElement} */
-      const totalAmount = totalAmountEl;
+      const MAX_TOTAL = 800;
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
+      function computeTotal() {
         const type = ticketType.value;
-        const qty = parseInt(quantity.value || '1', 10);
-        const emailEl = /** @type {HTMLInputElement} */ (document.getElementById('email'));
-        const email = emailEl ? emailEl.value : '';
+        const qty = Math.max(1, parseInt(quantity.value || '1', 10));
+        const price = prices[type] || 0;
+        return price * qty;
+      }
 
+      function updateTotal() {
+        const total = computeTotal();
+        totalAmount.textContent = `€${total.toFixed(2)}`;
+      }
+
+      ticketType.addEventListener('change', updateTotal);
+      quantity.addEventListener('input', updateTotal);
+      updateTotal();
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const emailEl = /** @type {HTMLInputElement} */ (document.getElementById('email'));
+        const email = emailEl ? emailEl.value.trim() : '';
         if (!email) {
           if (result) result.textContent = 'Introduce un correo válido.';
           return;
         }
 
-        if (result) result.textContent = `Reserva registrada: ${qty} x ${type}. Te enviaremos la confirmación a ${email}.`;
+        const type = ticketType.value;
+        const qty = Math.max(1, parseInt(quantity.value || '1', 10));
+        const total = computeTotal();
+
+        if (total > MAX_TOTAL) {
+          if (result) result.textContent = `El total (€${total.toFixed(2)}) supera el máximo permitido de €${MAX_TOTAL}. Reduce la cantidad o elige otra entrada.`;
+          return;
+        }
+
         if (reserveBtn) reserveBtn.disabled = true;
-        setTimeout(() => { if (reserveBtn) reserveBtn.disabled = false; }, 3000);
+        try {
+          // Wait for EmailJS to load
+          while (!window.emailjs) await new Promise(r => setTimeout(r, 100));
+          emailjs.init(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || '');
+          
+          await emailjs.send(
+            import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || '',
+            import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || '',
+            {
+              to_email: email,
+              type: type,
+              quantity: qty,
+              total: total.toFixed(2),
+              message: `Gracias por tu reserva de ${qty}x ${type} por €${total.toFixed(2)}. Esperamos verte en Octavia Roma Land.`
+            }
+          );
+          if (result) result.textContent = 'Reserva enviada. Revisa tu correo para la confirmación.';
+        } catch (err) {
+          if (result) result.textContent = `Error enviando reserva: ${err.message}`;
+        } finally {
+          if (reserveBtn) reserveBtn.disabled = false;
+        }
       });
 
       if (clearBtn) {
@@ -112,18 +154,6 @@ import Layout from '../layouts/Layout.astro';
           updateTotal();
         });
       }
-
-      function updateTotal() {
-        const type = ticketType.value;
-        const qty = Math.max(1, parseInt(quantity.value || '1', 10));
-        const price = prices[type] || 0;
-        const total = price * qty;
-        totalAmount.textContent = `€${total.toFixed(2)}`;
-      }
-
-      ticketType.addEventListener('change', updateTotal);
-      quantity.addEventListener('input', updateTotal);
-      updateTotal();
     });
   </script>
 </Layout>
