@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <main class="mx-auto max-w-4xl px-6 py-16">
+    <h1 class="text-4xl font-semibold text-white mb-4">Comprar entradas — Octavia Roma Land</h1>
+    <p class="text-slate-300 mb-8">Selecciona tu entrada y deja tu correo para reservar. Esta página no procesa pagos — solo reserva.</p>
+
+    <div class="grid gap-6 md:grid-cols-3 mb-8">
+      <div class="roman-card p-6 rounded-2xl text-center">
+        <p class="text-sm uppercase tracking-[0.24em] text-amber-300">Familia</p>
+        <p class="mt-4 text-3xl font-bold text-white">€35</p>
+        <p class="mt-2 text-sm text-slate-400">2 adultos + 2 niños — acceso a atracciones</p>
+      </div>
+      <div class="roman-card p-6 rounded-2xl text-center">
+        <p class="text-sm uppercase tracking-[0.24em] text-emerald-300">Gladiador</p>
+        <p class="mt-4 text-3xl font-bold text-white">€25</p>
+        <p class="mt-2 text-sm text-slate-400">Entrada general + reserva rápida para espectáculos</p>
+      </div>
+      <div class="roman-card p-6 rounded-2xl text-center">
+        <p class="text-sm uppercase tracking-[0.24em] text-cyan-300">Imperial</p>
+        <p class="mt-4 text-3xl font-bold text-white">€48</p>
+        <p class="mt-2 text-sm text-slate-400">Paquete premium: guía, acceso nocturno y cena</p>
+      </div>
+    </div>
+
+    <form id="reserve-form" class="space-y-4 bg-slate-900/80 p-6 rounded-2xl">
+      <div>
+        <label class="block text-sm text-slate-300 mb-2">Tipo de entrada</label>
+        <select id="ticketType" class="w-full rounded-md bg-slate-800 text-white p-3">
+          <option value="Familia">Familia — €35</option>
+          <option value="Gladiador">Gladiador — €25</option>
+          <option value="Imperial">Imperial — €48</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm text-slate-300 mb-2">Cantidad</label>
+        <input id="quantity" type="number" min="1" value="1" class="w-full rounded-md bg-slate-800 text-white p-3" />
+      </div>
+
+      <div>
+        <label class="block text-sm text-slate-300 mb-2">Correo electrónico</label>
+        <input id="email" type="email" required class="w-full rounded-md bg-slate-800 text-white p-3" />
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button id="reserveBtn" class="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-slate-950">Reservar (sin pago)</button>
+        <button id="clearBtn" type="button" class="rounded-full bg-slate-700 px-4 py-2 text-sm text-white">Limpiar</button>
+      </div>
+
+      <div id="reserveResult" class="mt-4 text-sm text-emerald-300" aria-live="polite"></div>
+    </form>
+
+    <div id="priceTotal" class="mt-8 text-center">
+      <p class="text-sm text-slate-400">Total a pagar</p>
+      <p id="totalAmount" class="mt-2 text-5xl font-bold text-amber-300">€35</p>
+    </div>
+
+  </main>
+
+  <script>
+    // @ts-nocheck
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('reserve-form');
+      if (!form) return;
+
+      const result = document.getElementById('reserveResult');
+      const reserveBtn = document.getElementById('reserveBtn');
+      const clearBtn = document.getElementById('clearBtn');
+
+      /** @type {{Familia:number,Gladiador:number,Imperial:number}} */
+      const prices = { Familia: 35, Gladiador: 25, Imperial: 48 };
+
+      const ticketTypeEl = document.getElementById('ticketType');
+      const quantityEl = document.getElementById('quantity');
+      const totalAmountEl = document.getElementById('totalAmount');
+
+      if (!ticketTypeEl || !quantityEl || !totalAmountEl) return;
+
+      /** @type {HTMLSelectElement} */
+      const ticketType = ticketTypeEl;
+      /** @type {HTMLInputElement} */
+      const quantity = quantityEl;
+      /** @type {HTMLElement} */
+      const totalAmount = totalAmountEl;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const type = ticketType.value;
+        const qty = parseInt(quantity.value || '1', 10);
+        const emailEl = /** @type {HTMLInputElement} */ (document.getElementById('email'));
+        const email = emailEl ? emailEl.value : '';
+
+        if (!email) {
+          if (result) result.textContent = 'Introduce un correo válido.';
+          return;
+        }
+
+        if (result) result.textContent = `Reserva registrada: ${qty} x ${type}. Te enviaremos la confirmación a ${email}.`;
+        if (reserveBtn) reserveBtn.disabled = true;
+        setTimeout(() => { if (reserveBtn) reserveBtn.disabled = false; }, 3000);
+      });
+
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          quantity.value = '1';
+          const emailEl = /** @type {HTMLInputElement} */ (document.getElementById('email'));
+          if (emailEl) emailEl.value = '';
+          if (result) result.textContent = '';
+          updateTotal();
+        });
+      }
+
+      function updateTotal() {
+        const type = ticketType.value;
+        const qty = Math.max(1, parseInt(quantity.value || '1', 10));
+        const price = prices[type] || 0;
+        const total = price * qty;
+        totalAmount.textContent = `€${total.toFixed(2)}`;
+      }
+
+      ticketType.addEventListener('change', updateTotal);
+      quantity.addEventListener('input', updateTotal);
+      updateTotal();
+    });
+  </script>
+</Layout>

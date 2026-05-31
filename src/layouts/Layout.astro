@@ -1,3 +1,6 @@
+---
+import '../styles.css';
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,18 +9,13 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Octavia Roma Land</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+		<script src="https://cdn.tailwindcss.com" defer></script>
 	</head>
-	<body>
+	<body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

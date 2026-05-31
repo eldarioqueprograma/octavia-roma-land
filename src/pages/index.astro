@@ -1,11 +1,143 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<main class="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-6 py-12 lg:px-8">
+		<section class="hero-glow bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-6 py-12 sm:px-10 lg:px-12 border border-slate-700 rounded-3xl">
+			<div class="grid gap-8 lg:grid-cols-[1.3fr_0.9fr] lg:items-center">
+				<div class="space-y-6">
+					
+					<h1 class="text-5xl font-semibold tracking-tight text-white sm:text-6xl">
+						Octavia Roma Land
+					</h1>
+					<p class="max-w-2xl text-xl leading-9 text-slate-300 sm:text-2xl">
+						La experiencia temática de Roma antigua que todavía no está abierta al público. Reserva tu visita para ser de los primeros en cruzar las puertas del Imperio.
+					</p>
+					
+				</div>
+				
+			</div>
+
+			<div class="mt-10 grid gap-6 lg:grid-cols-3">
+				<div class="roman-card rounded-[2rem] border border-slate-800 p-6 transform transition hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/30">
+					<p class="text-sm font-semibold uppercase tracking-[0.24em] text-amber-300">Familia</p>
+					<p class="mt-4 text-3xl font-bold text-white">€35</p>
+					<p class="mt-3 text-sm leading-6 text-slate-400">Entrada diaria para dos adultos y dos niños + acceso a todas las atracciones.</p>
+				</div>
+				<div class="roman-card rounded-[2rem] border border-slate-800 p-6 transform transition hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/30">
+					<p class="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">Gladiador</p>
+					<p class="mt-4 text-3xl font-bold text-white">€25</p>
+					<p class="mt-3 text-sm leading-6 text-slate-400">Entrada general con reserva rápida para espectáculos y vistas exclusivas del Coliseo.</p>
+				</div>
+				<div class="roman-card rounded-[2rem] border border-slate-800 p-6 transform transition hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/30">
+					<p class="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-300">Imperial</p>
+					<p class="mt-4 text-3xl font-bold text-white">€48</p>
+					<p class="mt-3 text-sm leading-6 text-slate-400">Paquete premium con acceso nocturno a nuestros hoteles y cena inspirada en recetas romanas.</p>
+				</div>
+			</div>
+
+			<div class="mt-12 text-center px-4 py-2">
+				
+				<p class="mt-4 text-base uppercase tracking-[0.32em] text-amber-200">Apertura oficial</p>
+				<p class="mt-4 text-5xl font-semibold uppercase tracking-[0.12em] text-white sm:text-6xl">22 de junio</p>
+				<p class="mt-6 text-sm text-slate-400">Prepárate para vivir la inauguración más épica de Roma.</p>
+				<div class="mt-12 grid w-full max-w-5xl grid-cols-2 gap-6 text-center sm:grid-cols-4">
+					<div>
+						<p id="countdown-days" class="text-[5rem] font-black leading-none text-white sm:text-[6rem]">00</p>
+						<p class="mt-3 text-sm uppercase tracking-[0.32em] text-slate-400">días</p>
+					</div>
+					<div>
+						<p id="countdown-hours" class="text-[5rem] font-black leading-none text-white sm:text-[6rem]">00</p>
+						<p class="mt-3 text-sm uppercase tracking-[0.32em] text-slate-400">horas</p>
+					</div>
+					<div>
+						<p id="countdown-minutes" class="text-[5rem] font-black leading-none text-white sm:text-[6rem]">00</p>
+						<p class="mt-3 text-sm uppercase tracking-[0.32em] text-slate-400">minutos</p>
+					</div>
+					<div>
+						<p id="countdown-seconds" class="text-[5rem] font-black leading-none text-white sm:text-[6rem]">00</p>
+						<p class="mt-3 text-sm uppercase tracking-[0.32em] text-slate-400">segundos</p>
+					</div>
+				</div>
+				<p class="mt-6 text-sm leading-6 text-slate-400">Apúntate y sé el primero en vivir la inauguración.</p>
+			</div>
+		</section>
+
+		<section id="tickets" class="mt-12 grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+			<div class="space-y-6">
+				<h2 class="text-3xl font-semibold text-white">Tu día en Octavia Roma Land</h2>
+				<p class="text-slate-300 leading-7">
+					Explora atracciones tematizadas en una recreación total de la Roma antigua. Desde el Mercado Imperial hasta el Templo de la Fortuna, cada rincón está diseñado para transportar a toda la familia al corazón del Imperio.
+				</p>
+				<ul class="space-y-4 text-slate-300">
+					<li class="flex gap-3 text-sm leading-6">
+						<span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+						Atracciones familiares, espectáculos de gladiadores y talleres históricos.
+					</li>
+					<li class="flex gap-3 text-sm leading-6">
+						<span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+						Zona gastronómica con recetas romanas y opciones modernas.
+					</li>
+					<li class="flex gap-3 text-sm leading-6">
+						<span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+						Entrada rápida disponible para reducir filas y disfrutar mejor tu visita.
+					</li>
+				</ul>
+			</div>
+
+			<aside class="text-slate-300">
+				<h3 class="text-2xl font-semibold text-white">¿Listo para reservar?</h3>
+				<p class="mt-4 text-sm leading-6">
+					Selecciona tu tarifa y deja tu correo para avisarte cuando abramos las ventas.
+				</p>
+				<div class="mt-6 space-y-4">
+					<div>
+						<p class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">Horario</p>
+						<p class="mt-2 text-lg font-semibold text-white">10:00 - 22:00</p>
+					</div>
+					<div>
+						<p class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-500">Ubicación</p>
+						<p class="mt-2 text-lg font-semibold text-white">Foro de Aventuras, Roma Land</p>
+					</div>
+					<button class="w-full mb-6 rounded-full bg-slate-700 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:bg-slate-600" disabled>
+						Próximamente
+					</button>
+				</div>
+			</aside>
+		</section>
+	</main>
+
+	<script>
+		const targetDate = new Date('2026-06-22T10:00:00');
+		const daysEl = document.getElementById('countdown-days');
+		const hoursEl = document.getElementById('countdown-hours');
+		const minutesEl = document.getElementById('countdown-minutes');
+		const secondsEl = document.getElementById('countdown-seconds');
+
+		function updateCountdown() {
+			const now = new Date();
+			const diff = targetDate.getTime() - now.getTime();
+			if (diff <= 0) {
+				if (daysEl) daysEl.textContent = '00';
+				if (hoursEl) hoursEl.textContent = '00';
+				if (minutesEl) minutesEl.textContent = '00';
+				if (secondsEl) secondsEl.textContent = '00';
+				return;
+			}
+
+			const seconds = Math.floor((diff / 1000) % 60);
+			const minutes = Math.floor((diff / (1000 * 60)) % 60);
+			const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+			const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+			if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+			if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+			if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+			if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+		}
+
+		updateCountdown();
+		setInterval(updateCountdown, 1000);
+	</script>
 </Layout>

@@ -12,6 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.4.2"
+    "astro": "^6.4.2",
+    "octavia-roma-land": "link:",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2"
   }
 }

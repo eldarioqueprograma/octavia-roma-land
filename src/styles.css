@@ -1,0 +1,73 @@
+:root {
+  color-scheme: dark;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Cinzel', ui-serif, Georgia, 'Times New Roman', serif;
+  background: radial-gradient(circle at top left, rgba(236, 202, 75, 0.12), transparent 18%),
+    radial-gradient(circle at bottom right, rgba(165, 94, 23, 0.18), transparent 18%),
+    linear-gradient(135deg, #24160f 0%, #2f1e15 35%, #4b3420 100%);
+  color: #f8f3e6;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 76rem;
+}
+
+section,
+aside,
+button,
+div[class*="rounded-"] {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.88;
+}
+
+.hero-glow {
+  background: radial-gradient(circle at top, rgba(252, 211, 77, 0.16), transparent 38%);
+}
+
+.roman-card {
+  border-color: rgba(216, 180, 83, 0.15);
+  background: rgba(15, 23, 42, 0.88);
+  box-shadow: 0 20px 80px rgba(15, 23, 42, 0.25);
+}
+
+.roman-headline {
+  text-shadow: 0 1px 15px rgba(255, 213, 79, 0.18);
+}
+
+main {
+  margin: 0 auto;
+  max-width: 76rem;
+}
+
+section,
+aside,
+button,
+div[class*="rounded-"] {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.85;
+}
