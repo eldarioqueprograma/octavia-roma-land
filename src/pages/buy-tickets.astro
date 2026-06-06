@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const PUBLIC_EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || '';
+const PUBLIC_EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || '';
+const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || '';
 ---
 
 <Layout>
@@ -70,100 +74,108 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
   </main>
+  <div id="config-container" 
+    data-public-key={PUBLIC_EMAILJS_PUBLIC_KEY}
+    data-service-id={PUBLIC_EMAILJS_SERVICE_ID}
+    data-template-id={PUBLIC_EMAILJS_TEMPLATE_ID}
+    style="display:none"></div>
   <script type="module">
     import emailjs from '@emailjs/browser';
 
-    const PUBLIC_EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || '';
-    const PUBLIC_EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || '';
-    const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || '';
+    (async () => {
+      const configContainer = document.getElementById('config-container');
+      const PUBLIC_EMAILJS_PUBLIC_KEY = configContainer?.dataset.publicKey || '';
+      const PUBLIC_EMAILJS_SERVICE_ID = configContainer?.dataset.serviceId || '';
+      const PUBLIC_EMAILJS_TEMPLATE_ID = configContainer?.dataset.templateId || '';
 
-    const form = document.getElementById('reserve-form');
-    const result = document.getElementById('reserveResult');
-    const reserveBtn = document.getElementById('reserveBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const ticketType = document.getElementById('ticketType');
-    const quantity = document.getElementById('quantity');
-    const totalAmount = document.getElementById('totalAmount');
-    const emailInput = document.getElementById('email');
+      const form = document.getElementById('reserve-form');
+      const result = document.getElementById('reserveResult');
+      const reserveBtn = document.getElementById('reserveBtn');
+      const clearBtn = document.getElementById('clearBtn');
+      const ticketType = document.getElementById('ticketType');
+      const quantity = document.getElementById('quantity');
+      const totalAmount = document.getElementById('totalAmount');
+      const emailInput = document.getElementById('email');
 
-    function setResult(message, isError = false) {
-      if (!result) return;
-      result.textContent = message;
-      result.classList.toggle('text-rose-400', isError);
-      result.classList.toggle('text-emerald-300', !isError);
-    }
-
-    if (!form || !result || !reserveBtn || !clearBtn || !ticketType || !quantity || !totalAmount || !emailInput) {
-      console.warn('Formulario de reserva incompleto o elementos no encontrados.');
-    } else if (!PUBLIC_EMAILJS_PUBLIC_KEY || !PUBLIC_EMAILJS_SERVICE_ID || !PUBLIC_EMAILJS_TEMPLATE_ID) {
-      setResult('Error de configuración: faltan PUBLIC_EMAILJS_PUBLIC_KEY, PUBLIC_EMAILJS_SERVICE_ID o PUBLIC_EMAILJS_TEMPLATE_ID.', true);
-      reserveBtn.disabled = true;
-    } else {
-      emailjs.init(PUBLIC_EMAILJS_PUBLIC_KEY);
-
-      const prices = { Familia: 35, Gladiador: 25, Imperial: 48 };
-      const MAX_TOTAL = 800;
-
-      function computeTotal() {
-        const type = ticketType.value;
-        const qty = Math.max(1, parseInt(quantity.value || '1', 10));
-        return (prices[type] || 0) * qty;
+      function setResult(message, isError = false) {
+        if (!result) return;
+        result.textContent = message;
+        result.classList.toggle('text-rose-400', isError);
+        result.classList.toggle('text-emerald-300', !isError);
       }
 
-      function updateTotal() {
-        totalAmount.textContent = `€${computeTotal().toFixed(2)}`;
-      }
-
-      ticketType.addEventListener('change', updateTotal);
-      quantity.addEventListener('input', updateTotal);
-      clearBtn.addEventListener('click', () => {
-        form.reset();
-        updateTotal();
-        setResult('Formulario restablecido. Completa los datos y presiona Reservar.');
-      });
-
-      updateTotal();
-
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        const email = emailInput.value.trim();
-        if (!email) {
-          setResult('Introduce un correo electrónico válido.', true);
-          return;
-        }
-
-        const type = ticketType.value;
-        const qty = Math.max(1, parseInt(quantity.value || '1', 10));
-        const total = computeTotal();
-
-        if (total > MAX_TOTAL) {
-          setResult(`El total (€${total.toFixed(2)}) supera el máximo permitido de €${MAX_TOTAL}.`, true);
-          return;
-        }
-
+      if (!form || !result || !reserveBtn || !clearBtn || !ticketType || !quantity || !totalAmount || !emailInput) {
+        console.warn('Formulario de reserva incompleto o elementos no encontrados.');
+      } else if (!PUBLIC_EMAILJS_PUBLIC_KEY || !PUBLIC_EMAILJS_SERVICE_ID || !PUBLIC_EMAILJS_TEMPLATE_ID) {
+        setResult('Error de configuración: faltan PUBLIC_EMAILJS_PUBLIC_KEY, PUBLIC_EMAILJS_SERVICE_ID o PUBLIC_EMAILJS_TEMPLATE_ID.', true);
         reserveBtn.disabled = true;
-        setResult('Enviando reserva...');
+      } else {
+        emailjs.init(PUBLIC_EMAILJS_PUBLIC_KEY);
 
-        try {
-          await emailjs.send(PUBLIC_EMAILJS_SERVICE_ID, PUBLIC_EMAILJS_TEMPLATE_ID, {
-            to_email: email,
-            ticket_type: type,
-            quantity: qty,
-            total: total.toFixed(2),
-            message: `Reserva de ${qty}x ${type} por €${total.toFixed(2)}.`,
-          });
-          setResult('Reserva enviada correctamente. Revisa tu correo para la confirmación.');
+        const prices = { Familia: 35, Gladiador: 25, Imperial: 48 };
+        const MAX_TOTAL = 800;
+
+        function computeTotal() {
+          const type = ticketType.value;
+          const qty = Math.max(1, parseInt(quantity.value || '1', 10));
+          return (prices[type] || 0) * qty;
+        }
+
+        function updateTotal() {
+          totalAmount.textContent = `€${computeTotal().toFixed(2)}`;
+        }
+
+        ticketType.addEventListener('change', updateTotal);
+        quantity.addEventListener('input', updateTotal);
+        clearBtn.addEventListener('click', () => {
           form.reset();
           updateTotal();
-        } catch (error) {
-          console.error('EmailJS send error:', error);
-          setResult('Error enviando la reserva. Intenta nuevamente en unos momentos.', true);
-        } finally {
-          reserveBtn.disabled = false;
-        }
-      });
-    }
+          setResult('Formulario restablecido. Completa los datos y presiona Reservar.');
+        });
+
+        updateTotal();
+
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          const email = emailInput.value.trim();
+          if (!email) {
+            setResult('Introduce un correo electrónico válido.', true);
+            return;
+          }
+
+          const type = ticketType.value;
+          const qty = Math.max(1, parseInt(quantity.value || '1', 10));
+          const total = computeTotal();
+
+          if (total > MAX_TOTAL) {
+            setResult(`El total (€${total.toFixed(2)}) supera el máximo permitido de €${MAX_TOTAL}.`, true);
+            return;
+          }
+
+          reserveBtn.disabled = true;
+          setResult('Enviando reserva...');
+
+          try {
+            await emailjs.send(PUBLIC_EMAILJS_SERVICE_ID, PUBLIC_EMAILJS_TEMPLATE_ID, {
+              to_email: email,
+              ticket_type: type,
+              quantity: qty,
+              total: total.toFixed(2),
+              message: `Reserva de ${qty}x ${type} por €${total.toFixed(2)}.`,
+            });
+            setResult('Reserva enviada correctamente. Revisa tu correo para la confirmación.');
+            form.reset();
+            updateTotal();
+          } catch (error) {
+            console.error('EmailJS send error:', error);
+            setResult('Error enviando la reserva. Intenta nuevamente en unos momentos.', true);
+          } finally {
+            reserveBtn.disabled = false;
+          }
+        });
+      }
+    })();
   </script>
 </Layout>
