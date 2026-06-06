@@ -75,19 +75,22 @@ const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID ||
   </main>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
   <script>
+    // @ts-nocheck
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('reserve-form');
       if (!form) return;
 
-      const result = /** @type {HTMLElement | null} */ (document.getElementById('reserveResult'));
-      const reserveBtn = /** @type {HTMLButtonElement | null} */ (document.getElementById('reserveBtn'));
-      const clearBtn = /** @type {HTMLButtonElement | null} */ (document.getElementById('clearBtn'));
+      const result = document.getElementById('reserveResult');
+      const reserveBtn = document.getElementById('reserveBtn');
+      const clearBtn = document.getElementById('clearBtn');
       const prices = { Familia: 35, Gladiador: 25, Imperial: 48 };
-      const ticketType = /** @type {HTMLSelectElement | null} */ (document.getElementById('ticketType'));
-      const quantity = /** @type {HTMLInputElement | null} */ (document.getElementById('quantity'));
-      const totalAmount = /** @type {HTMLElement | null} */ (document.getElementById('totalAmount'));
+      const ticketType = document.getElementById('ticketType');
+      const quantity = document.getElementById('quantity');
+      const totalAmount = document.getElementById('totalAmount');
 
-      if (!ticketType || !quantity || !totalAmount) return;
+      if (!(reserveBtn instanceof HTMLButtonElement) || !(clearBtn instanceof HTMLButtonElement) || !(ticketType instanceof HTMLSelectElement) || !(quantity instanceof HTMLInputElement) || !totalAmount) {
+        return;
+      }
 
       const PUBLIC_EMAILJS_PUBLIC_KEY = form.dataset.emailjsPublicKey || '';
       const PUBLIC_EMAILJS_SERVICE_ID = form.dataset.emailjsServiceId || '';
@@ -98,7 +101,8 @@ const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID ||
         return;
       }
 
-      const emailjs = /** @type {any} */ (window['emailjs']);
+      // @ts-ignore
+      const emailjs = window.emailjs;
       if (!emailjs) {
         if (result) result.textContent = 'Error: EmailJS no está disponible en la página.';
         return;
@@ -125,8 +129,9 @@ const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID ||
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const emailEl = /** @type {HTMLInputElement | null} */ (document.getElementById('email'));
-        const email = emailEl ? emailEl.value.trim() : '';
+        const emailEl = document.getElementById('email');
+        if (!(emailEl instanceof HTMLInputElement)) return;
+        const email = emailEl.value.trim();
         if (!email) {
           if (result) result.textContent = 'Introduce un correo válido.';
           return;
@@ -141,7 +146,7 @@ const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID ||
           return;
         }
 
-        if (reserveBtn) reserveBtn.disabled = true;
+reserveBtn.disabled = true;
         if (result) result.textContent = 'Enviando reserva...';
 
         try {
@@ -161,15 +166,15 @@ const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID ||
         }
       });
 
-      if (clearBtn) {
-        clearBtn.addEventListener('click', () => {
-          quantity.value = '1';
-          const emailEl = /** @type {HTMLInputElement | null} */ (document.getElementById('email'));
-          if (emailEl) emailEl.value = '';
-          if (result) result.textContent = '';
-          updateTotal();
-        });
-      }
+      clearBtn.addEventListener('click', () => {
+        quantity.value = '1';
+        const emailEl = document.getElementById('email');
+        if (emailEl instanceof HTMLInputElement) {
+          emailEl.value = '';
+        }
+        if (result) result.textContent = '';
+        updateTotal();
+      });
     });
   </script>
 </Layout>
