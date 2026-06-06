@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title>La Gran Historia de Rómulo y Remo</title>
+  <desc>Imagen IA realista de esculturas y escenas del mito de Rómulo y Remo en un parque temático romano.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2b2d33" />
+      <stop offset="100%" stop-color="#75624f" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)" />
+  <ellipse cx="600" cy="520" rx="420" ry="240" fill="#3f271a" opacity="0.8" />
+  <path d="M320 420 C360 360 420 280 520 260 S760 320 860 380" fill="none" stroke="#f6e4c2" stroke-width="24" />
+  <circle cx="520" cy="330" r="44" fill="#f6e4c2" opacity="0.85" />
+  <circle cx="710" cy="360" r="44" fill="#f6e4c2" opacity="0.85" />
+  <path d="M530 420 L510 560" stroke="#e0c39c" stroke-width="28" stroke-linecap="round" />
+  <path d="M690 430 L670 560" stroke="#e0c39c" stroke-width="28" stroke-linecap="round" />
+  <text x="80" y="100" font-family="Cinzel, serif" font-size="58" fill="#fff">La Gran Historia de Rómulo y Remo</text>
+  <text x="80" y="150" font-family="Inter, sans-serif" font-size="22" fill="#f6e4c2">Foto IA realista</text>
+</svg>

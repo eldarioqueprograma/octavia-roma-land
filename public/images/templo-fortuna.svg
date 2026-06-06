@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title>Templo de la Fortuna</title>
+  <desc>Ilustración estilo IA de un templo romano iluminado con columnas y decoración acogedora.</desc>
+  <defs>
+    <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f2937" />
+      <stop offset="100%" stop-color="#4b5563" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#grad2)" />
+  <path d="M220 520 L980 520 L880 210 L320 210 Z" fill="#c9b19b" />
+  <path d="M290 520 L330 240 L370 520 Z" fill="#a07d60" />
+  <path d="M390 520 L430 240 L470 520 Z" fill="#a27a5d" />
+  <path d="M490 520 L530 240 L570 520 Z" fill="#b58c6c" />
+  <path d="M590 520 L630 240 L670 520 Z" fill="#9f7554" />
+  <path d="M690 520 L730 240 L770 520 Z" fill="#a27050" />
+  <path d="M780 520 L820 240 L860 520 Z" fill="#b08a6e" />
+  <circle cx="720" cy="310" r="26" fill="#fde9c7" opacity="0.8" />
+  <circle cx="530" cy="310" r="26" fill="#fde9c7" opacity="0.8" />
+  <text x="95" y="110" font-family="Cinzel, serif" font-size="64" fill="#fff" letter-spacing="2">Templo de la Fortuna</text>
+  <text x="95" y="170" font-family="Inter, sans-serif" font-size="24" fill="#f6e4c2">IA Concept Photo</text>
+</svg>

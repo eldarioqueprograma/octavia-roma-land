@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title>Comienza la Expansión</title>
+  <desc>Imagen IA realista de una exposición educativa sobre las conquistas romanas con mapas y escenas de batalla.</desc>
+  <defs>
+    <linearGradient id="map" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b78b5a" />
+      <stop offset="100%" stop-color="#3b3f4c" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000" flood-opacity="0.3" />
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#map)" />
+  <rect x="120" y="140" width="520" height="400" rx="32" fill="#fff3dd" filter="url(#shadow)" />
+  <rect x="620" y="180" width="420" height="340" rx="28" fill="#f2e1c3" opacity="0.9" />
+  <path d="M180 220 H620" stroke="#6e4a2f" stroke-width="16" />
+  <path d="M180 280 H620" stroke="#6e4a2f" stroke-width="16" />
+  <path d="M180 340 H520" stroke="#6e4a2f" stroke-width="12" />
+  <circle cx="760" cy="320" r="24" fill="#8a5b2d" />
+  <circle cx="830" cy="360" r="18" fill="#8a5b2d" />
+  <circle cx="910" cy="280" r="14" fill="#8a5b2d" />
+  <text x="80" y="100" font-family="Cinzel, serif" font-size="58" fill="#fff">Comienza la Expansión</text>
+  <text x="80" y="150" font-family="Inter, sans-serif" font-size="22" fill="#453927">Foto IA realista</text>
+</svg>

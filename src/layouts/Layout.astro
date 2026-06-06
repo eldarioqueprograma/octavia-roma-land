@@ -16,6 +16,18 @@ import '../styles.css';
 		<script src="https://cdn.tailwindcss.com" defer></script>
 	</head>
 	<body class="min-h-screen bg-slate-950 text-slate-100 antialiased">
-		<slot />
+		<header class="border-b border-slate-800 bg-slate-950/95 py-4 backdrop-blur-xl">
+			<div class="mx-auto flex max-w-6xl items-center justify-between px-6">
+				<a href="/" class="text-lg font-semibold uppercase tracking-[0.25em] text-white">Octavia Roma Land</a>
+				<nav class="flex flex-wrap items-center gap-4 text-sm uppercase tracking-[0.22em] text-slate-300">
+					<a href="/atracciones" class="transition hover:text-white">Atracciones</a>
+					<a href="/espectaculos" class="transition hover:text-white">Espectáculos</a>
+					<a href="/buy-tickets" class="transition hover:text-white">Precios</a>
+				</nav>
+			</div>
+		</header>
+		<main class="pt-6">
+			<slot />
+		</main>
 	</body>
 </html>

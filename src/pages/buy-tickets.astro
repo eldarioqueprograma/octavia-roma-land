@@ -4,8 +4,19 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
   <main class="mx-auto max-w-4xl px-6 py-16">
-    <h1 class="text-4xl font-semibold text-white mb-4">Comprar entradas — Octavia Roma Land</h1>
-    <p class="text-slate-300 mb-8">Selecciona tu entrada y deja tu correo para reservar. Esta página no procesa pagos — solo reserva.</p>
+    <div class="flex flex-wrap items-center gap-4 mb-6">
+      <img src="/Gemini_Generated_Image_2a7lp72a7lp72a7l-removebg-preview.png" alt="Octavia Roma Land logo" class="h-14 w-auto" />
+      <div>
+        <h1 class="text-4xl font-semibold text-white">Comprar entradas — Octavia Roma Land</h1>
+        <p class="text-slate-300">Selecciona tu entrada y deja tu correo para reservar. Esta página no procesa pagos — solo reserva.</p>
+      </div>
+    </div>
+
+    <div class="mb-8">
+      <p class="text-sm uppercase tracking-[0.24em] text-slate-400">Packs disponibles</p>
+      <h2 class="mt-2 text-3xl font-semibold text-white">Elige tu entrada</h2>
+      <p class="mt-3 text-slate-400">Selecciona entre los packs oficiales para vivir Octavia Roma Land con la experiencia que más te guste.</p>
+    </div>
 
     <div class="grid gap-6 md:grid-cols-3 mb-8">
       <div class="roman-card p-6 rounded-2xl text-center">
@@ -60,12 +71,8 @@ import Layout from '../layouts/Layout.astro';
 
   </main>
 
-  <script>
-    // Load EmailJS from CDN
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    document.head.appendChild(script);
-
+  <script type="module">
+    import emailjs from '@emailjs/browser';
     // @ts-nocheck
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('reserve-form');
@@ -92,6 +99,8 @@ import Layout from '../layouts/Layout.astro';
         if (result) result.textContent = 'Error de configuración: falta EmailJS PUBLIC_KEY o SERVICE_ID o TEMPLATE_ID en producción.';
         return;
       }
+
+      emailjs.init(PUBLIC_EMAILJS_PUBLIC_KEY);
 
       const MAX_TOTAL = 800;
 
@@ -131,10 +140,6 @@ import Layout from '../layouts/Layout.astro';
 
         if (reserveBtn) reserveBtn.disabled = true;
         try {
-          // Wait for EmailJS to load
-          while (!window.emailjs) await new Promise(r => setTimeout(r, 100));
-          emailjs.init(PUBLIC_EMAILJS_PUBLIC_KEY);
-          
           await emailjs.send(
             PUBLIC_EMAILJS_SERVICE_ID,
             PUBLIC_EMAILJS_TEMPLATE_ID,
