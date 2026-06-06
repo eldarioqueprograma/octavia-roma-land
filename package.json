@@ -18,6 +18,7 @@
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "^6.0.2"
+    "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/postcss": "^4.3.0"
   }
 }
