@@ -14,9 +14,6 @@ importers:
       astro:
         specifier: ^6.4.2
         version: 6.4.2(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(yaml@2.9.0)
-      octavia-roma-land:
-        specifier: 'link:'
-        version: 'link:'
       tailwindcss:
         specifier: ^4.3.0
         version: 4.3.0
