@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+const PUBLIC_EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || '';
+const PUBLIC_EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || '';
+const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || '';
 ---
 
 <Layout>
@@ -36,7 +39,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
 
-    <form id="reserve-form" class="space-y-4 bg-slate-900/80 p-6 rounded-2xl">
+    <form id="reserve-form" class="space-y-4 bg-slate-900/80 p-6 rounded-2xl" data-emailjs-public-key={PUBLIC_EMAILJS_PUBLIC_KEY} data-emailjs-service-id={PUBLIC_EMAILJS_SERVICE_ID} data-emailjs-template-id={PUBLIC_EMAILJS_TEMPLATE_ID}>
       <div>
         <label class="block text-sm text-slate-300 mb-2">Tipo de entrada</label>
         <select id="ticketType" class="w-full rounded-md bg-slate-800 text-white p-3">
@@ -57,7 +60,7 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="flex items-center gap-3">
-        <button type="button" id="reserveBtn" class="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-slate-950">Reservar (sin pago)</button>
+        <button type="submit" id="reserveBtn" class="rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold text-slate-950">Reservar (sin pago)</button>
         <button id="clearBtn" type="button" class="rounded-full bg-slate-700 px-4 py-2 text-sm text-white">Limpiar</button>
       </div>
 
@@ -70,36 +73,36 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
   </main>
-
-  <script type="module">
-    import emailjs from '@emailjs/browser';
-    // @ts-nocheck
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       const form = document.getElementById('reserve-form');
       if (!form) return;
 
-      const result = document.getElementById('reserveResult');
-      const reserveBtn = document.getElementById('reserveBtn');
-      const clearBtn = document.getElementById('clearBtn');
-
-      /** @type {{Familia:number,Gladiador:number,Imperial:number}} */
+      const result = /** @type {HTMLElement | null} */ (document.getElementById('reserveResult'));
+      const reserveBtn = /** @type {HTMLButtonElement | null} */ (document.getElementById('reserveBtn'));
+      const clearBtn = /** @type {HTMLButtonElement | null} */ (document.getElementById('clearBtn'));
       const prices = { Familia: 35, Gladiador: 25, Imperial: 48 };
-
-      const ticketType = /** @type {HTMLSelectElement} */ (document.getElementById('ticketType'));
-      const quantity = /** @type {HTMLInputElement} */ (document.getElementById('quantity'));
-      const totalAmount = /** @type {HTMLElement} */ (document.getElementById('totalAmount'));
+      const ticketType = /** @type {HTMLSelectElement | null} */ (document.getElementById('ticketType'));
+      const quantity = /** @type {HTMLInputElement | null} */ (document.getElementById('quantity'));
+      const totalAmount = /** @type {HTMLElement | null} */ (document.getElementById('totalAmount'));
 
       if (!ticketType || !quantity || !totalAmount) return;
 
-      const PUBLIC_EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY || '';
-      const PUBLIC_EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID || '';
-      const PUBLIC_EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID || '';
+      const PUBLIC_EMAILJS_PUBLIC_KEY = form.dataset.emailjsPublicKey || '';
+      const PUBLIC_EMAILJS_SERVICE_ID = form.dataset.emailjsServiceId || '';
+      const PUBLIC_EMAILJS_TEMPLATE_ID = form.dataset.emailjsTemplateId || '';
 
       if (!PUBLIC_EMAILJS_PUBLIC_KEY || !PUBLIC_EMAILJS_SERVICE_ID || !PUBLIC_EMAILJS_TEMPLATE_ID) {
-        if (result) result.textContent = 'Error de configuración: falta EmailJS PUBLIC_KEY o SERVICE_ID o TEMPLATE_ID en producción.';
+        if (result) result.textContent = 'Error de configuración: falta EmailJS PUBLIC_KEY o SERVICE_ID o TEMPLATE_ID.';
         return;
       }
 
+      const emailjs = /** @type {any} */ (window['emailjs']);
+      if (!emailjs) {
+        if (result) result.textContent = 'Error: EmailJS no está disponible en la página.';
+        return;
+      }
       emailjs.init(PUBLIC_EMAILJS_PUBLIC_KEY);
 
       const MAX_TOTAL = 800;
@@ -122,7 +125,7 @@ import Layout from '../layouts/Layout.astro';
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const emailEl = /** @type {HTMLInputElement} */ (document.getElementById('email'));
+        const emailEl = /** @type {HTMLInputElement | null} */ (document.getElementById('email'));
         const email = emailEl ? emailEl.value.trim() : '';
         if (!email) {
           if (result) result.textContent = 'Introduce un correo válido.';
@@ -139,37 +142,29 @@ import Layout from '../layouts/Layout.astro';
         }
 
         if (reserveBtn) reserveBtn.disabled = true;
+        if (result) result.textContent = 'Enviando reserva...';
+
         try {
-          await emailjs.send(
-            PUBLIC_EMAILJS_SERVICE_ID,
-            PUBLIC_EMAILJS_TEMPLATE_ID,
-            {
-              to_email: email,
-              type: type,
-              quantity: qty,
-              total: total.toFixed(2),
-              message: `Gracias por tu reserva de ${qty}x ${type} por €${total.toFixed(2)}. Esperamos verte en Octavia Roma Land.`
-            }
-          );
+          await emailjs.send(PUBLIC_EMAILJS_SERVICE_ID, PUBLIC_EMAILJS_TEMPLATE_ID, {
+            to_email: email,
+            type,
+            quantity: qty,
+            total: total.toFixed(2),
+            message: `Gracias por tu reserva de ${qty}x ${type} por €${total.toFixed(2)}. Esperamos verte en Octavia Roma Land.`,
+          });
           if (result) result.textContent = 'Reserva enviada. Revisa tu correo para la confirmación.';
         } catch (err) {
-          if (result) result.textContent = `Error enviando reserva: ${err.message}`;
+          const message = err instanceof Error ? err.message : String(err);
+          if (result) result.textContent = `Error enviando reserva: ${message}`;
         } finally {
           if (reserveBtn) reserveBtn.disabled = false;
         }
       });
 
-      if (reserveBtn) {
-        reserveBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          form.requestSubmit();
-        });
-      }
-
       if (clearBtn) {
         clearBtn.addEventListener('click', () => {
           quantity.value = '1';
-          const emailEl = /** @type {HTMLInputElement} */ (document.getElementById('email'));
+          const emailEl = /** @type {HTMLInputElement | null} */ (document.getElementById('email'));
           if (emailEl) emailEl.value = '';
           if (result) result.textContent = '';
           updateTotal();
