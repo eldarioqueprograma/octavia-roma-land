@@ -11,40 +11,77 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <div class="mt-12 grid gap-6 lg:grid-cols-2">
-      <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-amber-300">Área 1</p>
-        <h2 class="mt-4 text-3xl font-semibold text-white">El Odiseo de los Dioses</h2>
-        <p class="mt-4 text-slate-400">Montaña rusa familiar donde los visitantes sienten la aventura de la mitología romana en primera persona.</p>
+      <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://loremflickr.com/800/600/temple,roman?lock=1" alt="El Odiseo de los Dioses" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-amber-300">Área 1 — Los Orígenes y la Monarquía</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">El Odiseo de los Dioses</h2>
+          <p class="mt-4 text-slate-300">Montaña rusa familiar en vagonetas que simulan que subes al cielo, y en ese camino salen dioses como Júpiter, Juno, Neptuno y más. Mientras los clientes se asustan, están aprendiendo sobre la religión politeísta.</p>
+        </div>
       </div>
-      <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-amber-300">Área 2</p>
-        <h2 class="mt-4 text-3xl font-semibold text-white">Mare Nostrum</h2>
-        <p class="mt-4 text-slate-400">Espectáculo acuático y paseo en barca donde los usuarios viven las batallas del Mediterráneo.</p>
+      <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://loremflickr.com/800/600/ship,sea,roman?lock=2" alt="Mare Nostrum" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Área 2 — La República y la Expansión Territorial</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">Mare Nostrum</h2>
+          <p class="mt-4 text-slate-300">Peleas de agua en réplicas de barcos romanos con cañones de agua para hundir barcos cartagineses y conseguir botines de guerra.</p>
+        </div>
       </div>
-      <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Área 2</p>
-        <h2 class="mt-4 text-3xl font-semibold text-white">La Revuelta de Espartaco</h2>
-        <p class="mt-4 text-slate-400">Torre de caída libre que pone a los visitantes en el centro de la rebelión contra Roma.</p>
+      <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://loremflickr.com/800/600/colosseum,gladiator?lock=3" alt="La Revuelta de Espartaco" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Área 2 — La República y la Expansión Territorial</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">La Revuelta de Espartaco</h2>
+          <p class="mt-4 text-slate-300">Torre de caída libre que simboliza el auge de las rebeliones de esclavos y los sectores más pobres frente a la opresión patricia.</p>
+        </div>
       </div>
-      <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-violet-300">Área 2</p>
-        <h2 class="mt-4 text-3xl font-semibold text-white">Comienza la Expansión</h2>
-        <p class="mt-4 text-slate-400">Paseo inmersivo donde los usuarios recorren las conquistas y siente el crecimiento de Roma.</p>
+      <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://loremflickr.com/800/600/roman,forum,architecture?lock=4" alt="Comienza la Expansión" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Área 2 — La República y la Expansión Territorial</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">Comienza la Expansión</h2>
+          <p class="mt-4 text-slate-300">Un camino en el que hay diferentes imágenes, cada una sobre las diferentes zonas conquistadas por Roma.</p>
+        </div>
       </div>
-      <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Área 3</p>
-        <h2 class="mt-4 text-3xl font-semibold text-white">Escape de Pompeya</h2>
-        <p class="mt-4 text-slate-400">Recorrido interactivo para escapar de la erupción del Vesubio con efectos especiales.</p>
+      <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://loremflickr.com/800/600/horse,racing,chariot?lock=5" alt="Circus Maximus" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-violet-300">Área 3 — El Gran Imperio y la Vida Urbana</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">Circus Maximus</h2>
+          <p class="mt-4 text-slate-300">Montaña rusa doble donde dos trenes con forma de caballos compiten a máxima velocidad simulando las carreras imperiales.</p>
+        </div>
       </div>
-      <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Área 4</p>
-        <h2 class="mt-4 text-3xl font-semibold text-white">Laberinto de las Catacumbas</h2>
-        <p class="mt-4 text-slate-400">Pasaje subterráneo inmersivo donde los visitantes viven el misterio y la atmósfera de las catacumbas.</p>
+      <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://loremflickr.com/800/600/pompeii,ruins,volcano?lock=6" alt="Escape de Pompeya" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-violet-300">Área 3 — El Gran Imperio y la Vida Urbana</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">Escape de Pompeya</h2>
+          <p class="mt-4 text-slate-300">Recorrido interactivo por calles empedradas y tabernae, escapando del Foro antes de la erupción del Vesubio (efectos de luces, humo y terremoto, año 79 d.C.).</p>
+        </div>
       </div>
-      <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-        <p class="text-sm uppercase tracking-[0.28em] text-emerald-300">Área 4</p>
-        <h2 class="mt-4 text-3xl font-semibold text-white">Invasión Bárbara 476</h2>
-        <p class="mt-4 text-slate-400">Montaña rusa intensa que sumerge a los visitantes en la caída del Imperio.</p>
+      <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://loremflickr.com/800/600/tunnel,dark,underground?lock=7" alt="Laberinto de las Catacumbas" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-emerald-300">Área 4 — Religión, Cultura y la Caída del Imperio</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">Laberinto de las Catacumbas</h2>
+          <p class="mt-4 text-slate-300">Pasaje del terror cultural por pasadizos subterráneos donde se descubren los ritos y el ocultamiento de los primeros cristianos perseguidos.</p>
+        </div>
+      </div>
+      <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://loremflickr.com/800/600/warrior,fire,barbarian?lock=8" alt="Invasión Bárbara 476" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-emerald-300">Área 4 — Religión, Cultura y la Caída del Imperio</p>
+          <h2 class="mt-4 text-3xl font-semibold text-white">Invasión Bárbara 476</h2>
+          <p class="mt-4 text-slate-300">Montaña rusa de alta intensidad con inversiones y giros bruscos que simula el cruce de las fronteras germánicas y el saqueo de Roma.</p>
+        </div>
       </div>
     </div>
   </main>

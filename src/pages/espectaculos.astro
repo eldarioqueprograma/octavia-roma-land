@@ -19,17 +19,15 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="mt-8 grid gap-6 lg:grid-cols-2">
-        <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-          <p class="text-sm uppercase tracking-[0.28em] text-amber-300">Área 3</p>
-          <h3 class="mt-4 text-2xl font-semibold text-white">Circus Maximus</h3>
-          <p class="mt-4 text-slate-400">Carreras de cuádrigas inspiradas en el Circo Máximo, con velocidad y emoción para toda la familia.</p>
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://loremflickr.com/800/600/colosseum,rome,italy?lock=9" alt="Coliseo VR" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <p class="text-sm uppercase tracking-[0.28em] text-violet-300">Área 3 — El Gran Imperio y la Vida Urbana</p>
+            <h3 class="mt-4 text-2xl font-semibold text-white">Coliseo VR: Naumaquias y Gladiadores</h3>
+            <p class="mt-4 text-slate-300">Simulador inmersivo en 3D dentro de un anfiteatro: combates de gladiadores, ataques de fieras e inundación total para una batalla naval.</p>
+          </div>
         </div>
-        <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-          <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Área 3</p>
-          <h3 class="mt-4 text-2xl font-semibold text-white">Coliseo VR: Naumaquias y Gladiadores</h3>
-          <p class="mt-4 text-slate-400">Experiencia de realidad virtual que muestra combates de gladiadores en el Coliseo.</p>
-        </div>
-        
       </div>
     </section>
 
@@ -42,10 +40,23 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <div class="mt-8 grid gap-6 lg:grid-cols-2">
-        <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-          <p class="text-sm uppercase tracking-[0.28em] text-cyan-300">Área 1</p>
-          <h3 class="mt-4 text-2xl font-semibold text-white">La gran historia de Romulo y Remo</h3>
-          <p class="mt-4 text-slate-400">Transformación épica de los hermanos gemelos que fundaron Roma, enseñando su proceso en la creacion.</p>
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://loremflickr.com/800/600/wolf,statue,rome?lock=10" alt="La Gran Historia de Rómulo y Remo" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <p class="text-sm uppercase tracking-[0.28em] text-amber-300">Área 1 — Los Orígenes y la Monarquía</p>
+            <h3 class="mt-4 text-2xl font-semibold text-white">La Gran Historia de Rómulo y Remo</h3>
+            <p class="mt-4 text-slate-300">Mostramos con esculturas diferentes escenas del mito de Rómulo y Remo, como vivían con una loba, cómo escuchaban a los dioses, y cómo Rómulo mató a su hermano Remo.</p>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://loremflickr.com/800/600/pantheon,dome,rome?lock=11" alt="El Gran Panteón" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <p class="text-sm uppercase tracking-[0.28em] text-emerald-300">Área 4 — Religión, Cultura y la Caída del Imperio</p>
+            <h3 class="mt-4 text-2xl font-semibold text-white">El Gran Panteón</h3>
+            <p class="mt-4 text-slate-300">Museo monumental con cúpula de caementum que alberga esculturas como el Augusto de Prima Porta, mosaicos y pinturas pompeyanas.</p>
+          </div>
         </div>
       </div>
     </section>
