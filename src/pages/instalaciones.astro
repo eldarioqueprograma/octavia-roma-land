@@ -3,29 +3,129 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <main class="max-w-6xl px-6 py-16">
+  <main class="mx-auto max-w-6xl px-6 py-16">
     <div class="space-y-6">
       <p class="text-sm uppercase tracking-[0.32em] text-emerald-300">Instalaciones</p>
-      <h1 class="text-5xl font-semibold text-white sm:text-6xl">Cosas mejores que simples atracciones y espectaculos</h1>
-      
+      <h1 class="text-5xl font-semibold text-white sm:text-6xl">Más que simples atracciones</h1>
+      <p class="max-w-2xl text-lg text-slate-400">Descanso, gastronomía y compras para completar tu experiencia romana.</p>
     </div>
 
-    
-    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+    <section class="mt-12">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm uppercase tracking-[0.24em] text-slate-400">El corazón del parque</p>
+          <h2 class="mt-2 text-3xl font-semibold text-white">El Foro Romano</h2>
+        </div>
+      </div>
+      <div class="group relative mt-6 overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://images.pexels.com/photos/248218/pexels-photo-248218.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="El Foro Romano" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-amber-300">Centro del parque</p>
+          <p class="mt-4 text-slate-300 max-w-3xl">Plaza circular pavimentada que actúa como corazón del parque. Desde aquí parten las cuatro calzadas principales hacia cada área temática. El punto de encuentro perfecto para comenzar tu viaje por la Roma antigua.</p>
+        </div>
+      </div>
+    </section>
 
-      <div class="mt-8 grid gap-6 lg:grid-cols-2">
-        <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-          
-          <h3 class="mt-4 text-2xl font-semibold text-white">Asador Las Tabernae</h3>
-          <p class="mt-4 text-slate-400">Restaurante temático que ofrece comida tradicional romana en un entorno histórico.</p>
+    <section class="mt-12">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm uppercase tracking-[0.24em] text-slate-400">Gastronomía</p>
+          <h2 class="mt-2 text-3xl font-semibold text-white">Asador Las Tabernae</h2>
         </div>
-        <div class="rounded-[2rem] border border-slate-700 bg-slate-900/80 p-8">
-          
-          <h3 class="mt-4 text-2xl font-semibold text-white">Las Termas de Caracalla</h3>
-          <p class="mt-4 text-slate-400">Spa romano con baños y servicios de cuidado personal en un entorno histórico.</p>
+      </div>
+      <div class="group relative mt-6 overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://images.pexels.com/photos/14459158/pexels-photo-14459158.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Asador Las Tabernae" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-violet-300">Área 3 — El Gran Imperio y la Vida Urbana</p>
+          <p class="mt-4 text-slate-300 max-w-3xl">Restauración temática pompeyana con menús basados en la tríada mediterránea. Sumérgete en los sabores de la antigua Roma con platos tradicionales adaptados al paladar moderno.</p>
         </div>
-        <h3 class="mt-4 text-2xl font-semibold text-white">Todas estas atracciones estan en la area 2</h3>
-        
-    
+      </div>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://images.pexels.com/photos/17137897/pexels-photo-17137897.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Garum" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <h3 class="text-xl font-semibold text-white">Garum</h3>
+            <p class="mt-2 text-slate-300">La salsa favorita de los romanos, adaptada para nuestra alimentación actual — mucho menos salada que el original pero igual de sabrosa.</p>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://images.pexels.com/photos/5273696/pexels-photo-5273696.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lentaculum" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <h3 class="text-xl font-semibold text-white">Lentaculum</h3>
+            <p class="mt-2 text-slate-300">Desayuno romano para los madrugadores. Incluye moretum, un majado tradicional a base de queso fresco, ajo y hierbas.</p>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://images.pexels.com/photos/5737579/pexels-photo-5737579.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tríada Mediterránea" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <h3 class="text-xl font-semibold text-white">Tríada Mediterránea</h3>
+            <p class="mt-2 text-slate-300">Pan, aceite de oliva y vino — los pilares de la alimentación romana, presentes en cada comida de la Tabernae.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm uppercase tracking-[0.24em] text-slate-400">Bienestar</p>
+          <h2 class="mt-2 text-3xl font-semibold text-white">Las Termas de Caracalla</h2>
+          <p class="mt-2 text-slate-400">Zona premium de descanso y spa para adultos, situada en el Área 2. Una fuente de ingresos complementaria de alta rentabilidad, perfecta para que los adultos consuman servicios mientras los jóvenes disfrutan de las atracciones mecánicas.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-3">
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://images.pexels.com/photos/4156292/pexels-photo-4156292.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Caldarium" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <p class="text-sm uppercase tracking-[0.28em] text-red-400">🔥 Caldarium</p>
+            <h3 class="mt-2 text-xl font-semibold text-white">Sala de agua cálida</h3>
+            <p class="mt-2 text-slate-300">Suelo caliente por hipocausto, el sistema de calefacción subterránea romano que te transportará a la época imperial.</p>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://loremflickr.com/600/400/spa,relax,chill?lock=18" alt="Tepidarium" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <p class="text-sm uppercase tracking-[0.28em] text-yellow-400">☀️ Tepidarium</p>
+            <h3 class="mt-2 text-xl font-semibold text-white">Sala templada</h3>
+            <p class="mt-2 text-slate-300">Ideal para aclimatar el cuerpo entre el calor del Caldarium y el frío del Frigidarium. El equilibrio perfecto.</p>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-[2rem] border border-slate-700">
+          <img src="https://loremflickr.com/600/400/pool,cold,swimming?lock=19" alt="Frigidarium" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+          <div class="relative z-10 p-8">
+            <p class="text-sm uppercase tracking-[0.28em] text-cyan-400">❄️ Frigidarium</p>
+            <h3 class="mt-2 text-xl font-semibold text-white">Piscina de agua fría</h3>
+            <p class="mt-2 text-slate-300">Cierra el circuito termal siguiendo la tradición romana auténtica. Refrescante y revitalizante.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm uppercase tracking-[0.24em] text-slate-400">Compras</p>
+          <h2 class="mt-2 text-3xl font-semibold text-white">Merchandising</h2>
+        </div>
+      </div>
+      <div class="group relative mt-6 overflow-hidden rounded-[2rem] border border-slate-700">
+        <img src="https://images.pexels.com/photos/29392847/pexels-photo-29392847.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Merchandising" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/20"></div>
+        <div class="relative z-10 p-8">
+          <p class="text-sm uppercase tracking-[0.28em] text-amber-300">Zona central — El Foro Romano</p>
+          <p class="mt-4 text-slate-300 max-w-3xl">En la zona central del parque encontrarás tiendas de merchandising con camisetas, pantalones y recuerdos para llevar un pedazo de la Roma antigua contigo.</p>
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>
